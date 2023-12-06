@@ -23,4 +23,56 @@ class GenreController extends Controller
             "data" =>$genre
         ];
     }
+    public function create()
+    {
+        //
+    }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $blog = Genre::create($request->all());
+        return [
+            "status" => 1,
+            "data" => $blog
+        ];
+    }
+    public function edit(Genre $blog)
+    {
+        //
+    }
+    public function update(Request $request, Genre $blog)
+    {
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $blog->update($request->all());
+
+        return [
+            "status" => 1,
+            "data" => $blog,
+            "msg" => "Blog updated successfully"
+        ];
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Blog  $blog
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Genre $blog)
+    {
+        $blog->delete();
+        return [
+            "status" => 1,
+            "data" => $blog,
+            "msg" => "Blog deleted successfully"
+        ];
+    }
 }

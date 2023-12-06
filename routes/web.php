@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BooksController;
+use App\Http\Controllers\GenreController;
 use App\Models\Genre;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('genre',Genre::class);
+Route::resource('genre',GenreController::class);
+Route::resource('books',BooksController::class);
