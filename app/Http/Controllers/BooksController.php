@@ -63,7 +63,7 @@ class BooksController extends Controller
     }
 
     public function book_by_genre($id){
-        $books = Books::select('chapters.*', 'books.*')->join('chapters', 'chapters.id_book', 'books.id_book')->where('genre',$id)->first();
+        $books = Books::select('chapters.*', 'books.*')->join('chapters', 'chapters.id_book', 'books.id_book')->where('genre',$id)->get();
         return $this->format_response("200","success",$books);
     }
     /**
