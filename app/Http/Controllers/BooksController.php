@@ -14,7 +14,7 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $books = Books::select('chapters.*', 'books.*')->join('chapters', 'chapters.id_book', 'books.id_book')->get();
+        $books = Books::join('chapters', 'chapters.id_book', 'books.id_book')->get();
 
         return $this->format_response("200","success",$books);
     }
@@ -23,7 +23,7 @@ class BooksController extends Controller
         $data = [
             "code" => $code,
             "status" => $status,
-            "data" => $data
+            "data" => json_decode($data)
         ];
         return $data;
     }
