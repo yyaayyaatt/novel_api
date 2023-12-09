@@ -62,6 +62,10 @@ class BooksController extends Controller
         return $this->format_response("200","success",$books);
     }
 
+    public function book_by_genre($id){
+        $books = Books::select('chapters.*', 'books.*')->join('chapters', 'chapters.id_book', 'books.id_book')->where('genre',$id)->first();
+        return $this->format_response("200","success",$books);
+    }
     /**
      * Show the form for editing the specified resource.
      *

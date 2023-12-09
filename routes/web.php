@@ -21,3 +21,4 @@ Route::get('/', function () {
 });
 Route::resource('genre',GenreController::class);
 Route::resource('books',BooksController::class);
+Route::get('books/genre/{genre}',[BooksController::class,'book_by_genre'])->name('books.genre');
