@@ -15,7 +15,6 @@ class BooksController extends Controller
     public function index()
     {
         $books = Books::select('chapters.*', 'books.*')->join('chapters', 'chapters.id_book', 'books.id_book')->get();
-        dd($books);
         return $this->format_response("200", "success", $books);
     }
 
@@ -57,7 +56,6 @@ class BooksController extends Controller
      */
     public function show(Request $books)
     {
-        dd($books);
         $books = Books::select('chapters.*', 'books.*')->join('chapters', 'chapters.id_book', 'books.id_book')->where('genre', $books->genre)->first();
 
         return $this->format_response("200", "success", $books);
@@ -65,7 +63,7 @@ class BooksController extends Controller
 
     public function book_by_genre($id)
     {
-        $books = Books::select('chapters.*', 'books.*')->join('chapters', 'chapters.id_book', 'books.id_book')->where('genre', $id)->get();
+        $books = Books::join('chapters', 'chapters.id_book', 'books.id_book')->where('genre', $id)->get();
         return $this->format_response("200", "success", $books);
     }
     /**
