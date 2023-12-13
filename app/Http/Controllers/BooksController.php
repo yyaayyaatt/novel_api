@@ -57,7 +57,7 @@ class BooksController extends Controller
     public function show($books)
     {
         $books = Books::select('chapters.*', 'books.*')->join('chapters', 'chapters.id_book', 'books.id_book')->where('chapters.id_book', $books->id_book)->get();
-        
+
         return $this->format_response("200", "success", $books);
     }
 
@@ -66,6 +66,7 @@ class BooksController extends Controller
         $books = Books::join('chapters', 'chapters.id_book', 'books.id_book')->where('genre', $id)->get();
         return $this->format_response("200", "success", $books);
     }
+
     public function book_by_id($id)
     {
         $books = Books::join('chapters', 'chapters.id_book', 'books.id_book')->where('chapters.id_book', $id)->get();
