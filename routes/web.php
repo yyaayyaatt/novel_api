@@ -18,8 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('genre',GenreController::class);
-Route::resource('books',BooksController::class);
 Route::get('books/genre/{genre}',[BooksController::class,'book_by_genre'])->name('books.genre');
-Route::get('books/show/{id_book}',[BooksController::class,'book_by_id'])->name('books.show');
+Route::get('books/search/{id_book}',[BooksController::class,'book_by_id'])->name('books.search');
+Route::get('books/show/{id_book}',[BooksController::class,'get_list_books'])->name('books.show.id_book');
 

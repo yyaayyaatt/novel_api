@@ -63,15 +63,17 @@ class BooksController extends Controller
 
     public function book_by_genre($id)
     {
-        $books = Books::join('chapters', 'chapters.id_book', 'books.id_book')->where('genre', $id)->get();
+        $books = Books::where('genre', $id)
+        ->get();
         return $this->format_response("200", "success", $books);
     }
 
-    public function book_by_id($id)
+    public function get_list_books($id)
     {
         $books = Books::join('chapters', 'chapters.id_book', 'books.id_book')->where('chapters.id_book', $id)->get();
         return $this->format_response("200", "success", $books);
     }
+
     /**
      * Show the form for editing the specified resource.
      *
